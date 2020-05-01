@@ -8,6 +8,12 @@ Sala
 <h1 class="text-center">Sala</h1>
 <br><br>
 
+@if ($consulta)
+<div class="alert alert-primary">
+    <p>Los resultados de la bùsqueda <strong>{{$consulta}}</strong> son:</p>
+</div>
+@endif
+
 @if($message = Session::get('exito'))
 <div class="alert alert-success">
     <p>{{$message}}</p>
@@ -22,7 +28,7 @@ Sala
     </thead>
 
     <tbody>
-        @foreach ($sala as $sala)
+        @foreach ($salas as $sala)
         <tr>
             <td>{{$sala->nombre}}</td>
             <td>
@@ -39,6 +45,8 @@ Sala
         @endforeach
     </tbody>
 </table>
+
+{{$salas->links()}}
 
 <br><br>
 <div class="row">

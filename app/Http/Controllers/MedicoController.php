@@ -17,14 +17,14 @@ class MedicoController extends Controller
     {
         if($request){
             $consulta = $request->buscar;
-            $medico = App\Medico::where('nombre', 'LIKE', '%' . $consulta . '%')
+            $medicos = App\Medico::where('nombre', 'LIKE', '%' . $consulta . '%')
                                         ->orderby('nombre','asc')
                                         ->paginate(5);
-            return view('medico.index', compact('medico','consulta'));
+            return view('medico.index', compact('medicos','consulta'));
         }
 
-        $medico = App\Medico::orderby('nombre','asc')>paginate(5);
-        return view('medico.index', compact('medico'));
+        $medicos = App\Medico::orderby('nombre','asc')>paginate(5);
+        return view('medico.index', compact('medicos'));
     }
 
     /**

@@ -32,3 +32,7 @@ Route::resource('vdiag','VdiagController');
 Route::resource('consulta','ConsultaController');
 
 Route::resource('Admin/users','Admin\UserController');
+
+Route::post('hospital/guardar','HospitalController@store');
+
+Route::get('hospitals/','HospitalController@listar');

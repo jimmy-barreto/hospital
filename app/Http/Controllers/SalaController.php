@@ -13,9 +13,18 @@ class SalaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $sala = App\Sala::orderby('nombre','asc')->get();
+
+        if($request){
+            $consulta = $request->buscar;
+            $salas = App\Sala::where('nombre', 'LIKE', '%' . $consulta . '%')
+                                        ->orderby('nombre','asc')
+                                        ->paginate(5);
+            return view('sala.index', compact('salas','consulta'));
+        }
+
+        $sala = App\Sala::orderby('nombre','asc')->paginate(5);
         return view('sala.index', compact('sala'));
     }
 

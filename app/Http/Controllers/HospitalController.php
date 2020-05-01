@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class HospitalController extends Controller
 {
+
+    // public function listar(){
+    //     $hospitals = App\Hospital::orderBy('nombre','asc')->get();
+
+    //     return response()->json([
+    //         $hospitals
+    //     ]);
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +45,7 @@ class HospitalController extends Controller
         if (Gate::denies('crear')) {
             return redirect()->route('hospital.index');
         }
-
+        //return view('hospital.create');
         return view('hospital.insert');
 
     }
@@ -50,6 +58,14 @@ class HospitalController extends Controller
      */
     public function store(Request $request)
     {
+        // if($request->ajax())
+        // {
+        //     App\Hospital::create($request->all());
+        //     return response()->json([
+        //         'mensaje' => 'Creado'
+        //     ]);
+        // }
+
         $request->validate([
             'codigo' => 'required',
             'nombre' => 'required',
@@ -92,6 +108,10 @@ class HospitalController extends Controller
 
         $hospital = App\Hospital::findorfail($id);
 
+        // return response()->json([
+        //     $hospital
+        // ]);
+
         return view('hospital.edit', compact('hospital'));
     }
 
@@ -116,6 +136,9 @@ class HospitalController extends Controller
 
        $hospital->update($request->all());
 
+    //    return response()->json(
+    //     ["mensaje" => "modificado"]
+    // );
        return redirect()->route('hospital.index')
                         ->with('exito','Hospital modificado con exito!');
     

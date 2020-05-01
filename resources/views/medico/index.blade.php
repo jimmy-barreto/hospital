@@ -29,7 +29,7 @@ Medico
     </thead>
 
     <tbody>
-        @foreach ($medico as $medico)
+        @foreach ($medicos as $medico)
         <tr>
             <td>{{$medico->nombre}}</td>
             <td>
@@ -48,7 +48,7 @@ Medico
 </table>
 <br>
 
-{{$medico->links()}}
+{{$medicos->links()}}
 
 <br><br>
 <div class="row">

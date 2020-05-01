@@ -21,7 +21,7 @@ class CreatePacientesTable extends Migration
             $table->date('fechaNacimiento');
             $table->enum("genero", ["Femenino", "Masculino"]);
             $table->integer('numeroRegistro')->unsigned();
-            $table->integer('numeroCama')->unsigned();
+            $table->string('numeroCama');
 
             $table->bigInteger('idsala')->unsigned();
             $table->foreign('idsala')->references('id')->on('salas');
